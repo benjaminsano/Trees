@@ -19,9 +19,6 @@ public class Node {
     this.right = null;
   }
   
-  // Maybe we'll need this later?
-  //public Node(Node previous, Node next, int value)
-  
   // getters & setters
   public int getKey(){
     return this.key;
@@ -39,7 +36,7 @@ public class Node {
     return this.right;
   }
   
-  public void setKey(int newKey) {
+  public void setKey(String newKey) {
     this.key = newKey;
   }
   
