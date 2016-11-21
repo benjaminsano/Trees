@@ -6,47 +6,57 @@
  */
 public class Node {
   // properties
-  private int data;
-  private Node prev;
-  private Node next;
+  private String key;
+  private Node parent;
+  private Node left;
+  private Node right;
 
   // Constructors
-  Node(int d) { 
-    this.data = d; 
-    this.next = null;
-    this.prev = null;
+  Node(String key) { 
+    this.key = key; 
+    this.parent = null;
+    this.left = null;
+    this.right = null;
   }
   
   // Maybe we'll need this later?
   //public Node(Node previous, Node next, int value)
   
   // getters & setters
-  public int getData(){
-    return this.data;
+  public int getKey(){
+    return this.key;
   }
   
-  public Node getPrev(){
-    return this.prev;
+  public Node getParent(){
+    return this.parent;
   }
   
-  public Node getNext() {
-    return this.next;
+  public Node getLeft() {
+    return this.left;
   }
   
-  public void setData(int newData) {
-    this.data = newData;
+  public Node getRight() {
+    return this.right;
   }
   
-  public void setPrev(Node newPrev) {
-    this.prev = newPrev;
+  public void setKey(int newKey) {
+    this.key = newKey;
   }
   
-  public void setNext(Node newNext) {
-    this.next = newNext;
+  public void setParent(Node newParent) {
+    this.parent = newParent;
+  }
+  
+  public void setLeft(Node newLeft) {
+    this.left = newLeft;
+  }
+  
+  public void setRight(Node newRight) {
+    this.right = newRight;
   }
   
   // Methods
   public void print() {
-    System.out.print(data + " " );
+    System.out.print(key + " " );
   }
 }

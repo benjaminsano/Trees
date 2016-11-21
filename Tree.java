@@ -1,37 +1,32 @@
 /* 
- * List.java
+ * Tree.java
  * written by csi/cen 213 students fall 2016
  * 
- * List class
+ * Tree class
+ * goals:
+ * 1. binary search tree
+ * 2. 3 kinds of traversal
+ * 2a. switch statement & use 3 kinds of traversals
+ * 3. find median (alphabetically)
+ * 3a.make tree balanced
  */
-public class List {
+public class Tree {
   // properties
-  Node head;
-  Node tail;
+  Node root;
 
   // Constructors
-  List() { 
+  Tree() { 
     this.head = null;
-    this.tail = null;
   }
+  
   // getters & setters
   public Node getHead() {
     return this.head;
   }
-  public Node getTail() {
-    return this.tail;
-  }
+
   public void setHead(Node newHead) {
-    if (this.head == this.tail)
-      this.tail = newHead;
     this.head = newHead;
   }
-  public void setTail(Node newTail) {
-    if (this.head == this.tail)
-      this.head = newTail;
-    this.tail = newTail;
-  }
-  
   
   // Methods
   // Adds node to the head of the list
