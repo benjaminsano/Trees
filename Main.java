@@ -3,7 +3,7 @@
  * 
  * A class for learning about trees.
  */
-public class LinkedLists {
+public class Main {
   public static void main (String [] args) {
     Tree myTree = new Tree();
     

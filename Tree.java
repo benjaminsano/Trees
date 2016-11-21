@@ -16,23 +16,25 @@ public class Tree {
 
   // Constructors
   Tree() { 
-    this.head = null;
+    this.root = null;
   }
   
   // getters & setters
-  public Node getHead() {
-    return this.head;
+  public Node getRoot() {
+    return this.root;
   }
 
-  public void setHead(Node newHead) {
-    this.head = newHead;
+  public void setRoot(Node newRoot) {
+    this.root = newRoot;
   }
   
   // Methods
   // Adds node to the head of the list
-  public void addData(int newInt) {
-    Node newNode = new Node(newInt);
+  public void addKey(String newKey) {
+    Node newNode = new Node(newKey);
+    //TODO: rewrite this
     
+    /*
     // if list is empty, 
     //add data to new head node
     if (this.isEmpty()) {
@@ -80,37 +82,38 @@ public class Tree {
         // move current to the next node
         //current = current.next;
       }
-    }
+    }*/
   }
   
   public boolean isEmpty() {
     // tests if the list is empty
-    return this.head == null;
+    return this.root == null;
   }
   
-  public boolean deleteNode(int data) {
-    Node current = this.head;
+  public boolean deleteNode(String key) {
+    // TODO: rewrite
+    
+    /*Node current = this.root;
     while(current != null) {
-      if (current.getNext() != null && current.getNext().getData() == data) {
+      if (current.getNext() != null && current.getNext().getData() == key) {
         current.setNext(current.getNext().getNext());
         current.getNext().setPrev(current);
         return(true);
       }
       current = current.getNext();
-    }
+    }*/
     return(false);
   }
   
-  // deletes entire list
-  public void deleteList() {
-    this.head = null;
-    this.tail = null;
+  // deletes entire tree
+  public void deleteTree() {
+    this.root = null;
   }
   
-  /*public void addNode(Node n){
-  }*/
-  
   public void print() {
+    // TODO: replace this with different kinds of traversals
+    
+    /*
     // local Node variable to keep track of where we are
     // start at the head of the list
     Node current = this.head;
@@ -120,22 +123,7 @@ public class Tree {
       // move current to the next node
       current = current.getNext();
     }
-    System.out.println("");
+    System.out.println("");*/
   }
-  
-  public void printReverse() {
-    // traverses and prints from tail
-    // local Node variable to keep track of where we are
-    // start at the tail of the list
-    Node current = this.tail;
-    // loop through until we get to end of list
-    while(current != null) {
-      current.print(); // print current node
-      // move current to the next node
-      current = current.getPrev();
-    }
-    System.out.println("");
-  }
-  
   
 }
