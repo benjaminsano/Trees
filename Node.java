@@ -20,7 +20,7 @@ public class Node {
   }
   
   // getters & setters
-  public int getKey(){
+  public String getKey(){
     return this.key;
   }
   
