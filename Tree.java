@@ -30,7 +30,7 @@ public class Tree {
   
   // Methods
   // Adds node to the head of the list
-  public void addKey(String newKey) {
+  public void insert(String newKey) {
     Node newNode = new Node(newKey);
     //TODO: rewrite this
     
