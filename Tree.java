@@ -37,18 +37,23 @@ public class Tree {
       while (current != null){
         if (newKey.compareTo(current.key) >  0) {
           // if right is null, add new node to right
-          if (current.right == null)
+          if (current.right == null) {
             current.right = newNode;
+            break;
+          }
           current = current.right;
           // less than goes left
         } else if (newKey.compareTo(current.key) < 0) {
           // if left is null, add new node to left
-          if (current.left == null)
+          if (current.left == null) {
             current.left = newNode;
+            break;
+          }
           current = current.left;
           // equal increments counter
         } else {
           current.count++;
+          break;
         }
       }
     }
@@ -81,18 +86,20 @@ public class Tree {
   
   public void print() {
     // TODO: replace this with different kinds of traversals
-    
-    /*
-    // local Node variable to keep track of where we are
-    // start at the head of the list
-    Node current = this.head;
-    // loop through until we get to end of list
-    while(current != null) {
-      current.print(); // print current node
-      // move current to the next node
-      current = current.getNext();
+    // local Node variable to keep track of 
+    //where we are
+    // start at the root of the tree
+    Node current = this.root;
+    // inorder print:
+    // print left first
+    if (current.left == null) {
+       // print middle
+      current.print()
     }
-    System.out.println("");*/
+    if (current.right == null) {
+    }
+    // print right
+    System.out.println("");
   }
   
 }
