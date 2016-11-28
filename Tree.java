@@ -19,70 +19,39 @@ public class Tree {
     this.root = null;
   }
   
-  // getters & setters
-  public Node getRoot() {
-    return this.root;
-  }
-
-  public void setRoot(Node newRoot) {
-    this.root = newRoot;
-  }
-  
   // Methods
   // Adds node to the head of the list
   public void insert(String newKey) {
     Node newNode = new Node(newKey);
-    //TODO: rewrite this
-    
-    /*
-    // if list is empty, 
-    //add data to new head node
+    // if tree is empty, 
+    //add data to new root node
     if (this.isEmpty()) {
-      this.head = newNode;
-      this.tail = newNode;
-    }
-    else 
-    // compare nodes & put new node in
-    // numeric order
-    {
-      // local Node variable to keep track of where we are
-      // start at the head of the list
-      Node current = this.head;
-      //System.out.println(current);
-      while(current != null) {
-        //System.out.println("current != null " + current);
-        // the new node is < the current node, add in front
-        if (current != null && newNode.getData() < current.getData() ) {
-          //System.out.println("<");
-          // make new node point to the head
-          newNode.setNext(this.head);
-          // make head point to the new node
-          this.head = newNode;
-          current.setPrev(newNode);
-          break;
+      this.root = newNode;
+    } else {
+      // compare nodes & insert in proper spot
+      // local Node variable to keep track of 
+      // where we are
+      // start at the root of the tree
+      Node current = this.root;
+      // greater goes right
+      while (current != null){
+        if (newKey.compareTo(current.key) >  0) {
+          // if right is null, add new node to right
+          if (current.right == null)
+            current.right = newNode;
+          current = current.right;
+          // less than goes left
+        } else if (newKey.compareTo(current.key) < 0) {
+          // if left is null, add new node to left
+          if (current.left == null)
+            current.left = newNode;
+          current = current.left;
+          // equal increments counter
+        } else {
+          current.count++;
         }
-        else if ( newNode.getData() < current.getNext().getData()) {
-          newNode.setNext(current.getNext());
-          // point current's next to the new Node
-          current.getNext().setPrev(newNode);
-          current.setNext(newNode);
-          newNode.setPrev(current);
-          
-          break;
-        }
-        // if we get to the end of the list, add the new node
-        else if (current.getNext() == null) {
-          current.setNext(newNode);
-          newNode.setPrev(current);
-          this.tail = newNode;
-          break;
-        }
-        current = current.getNext();
-
-        // move current to the next node
-        //current = current.next;
       }
-    }*/
+    }
   }
   
   public boolean isEmpty() {
