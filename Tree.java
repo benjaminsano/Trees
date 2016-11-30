@@ -61,33 +61,23 @@ public class Tree {
   }
   
   public boolean deleteNode(String key) {
+    return(this.deleteNode(this.root, key));
+  }
+  
+  public boolean deleteNode(Node subTree, String key) {
     // basecase 1: empty tree
     if (this.root == null) {
       return(false);
     }
-    // basecase 2: if the key the subTree
-    else if (newNode.key.compareTo(subTree.key) == 0) {
-      
-      
-    }
-    
-    
-    
-    // if newNode < subTree, go left
-    else if (newNode.key.compareTo(subTree.key)<0) {
-      if (subTree.left == null) {
-        subTree.left = newNode;
-        newNode.parent = subTree;
-      }
-      else this.insert(subTree.left, newNode);
-    }
-    // if newNode > subTree, go right
-    else {
-      if (subTree.right == null) {
-        subTree.right = newNode;
-        newNode.parent = subTree;
-      }
-      else this.insert(subTree.right, newNode);
+    // case 2: if the key the subTree
+    else if (key.compareTo(subTree.key) == 0) {
+      this.insert(subTree.right, subTree.left);
+      subTree.right.parent = subTree.parent;
+      if (subTree == subTree.parent.left) 
+        subTree.parent.left = subTree.right;
+      else
+        subTree.parent.right = subTree.right;
+      return(true);
     }
     return(false);
   }

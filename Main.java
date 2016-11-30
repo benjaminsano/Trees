@@ -20,6 +20,10 @@ public class Main {
         }
         System.out.println("words: " + wordcount);
         myTree.print();
+        System.out.println(myTree.deleteNode("blah"));
+        myTree.print();
+        System.out.println(myTree.deleteNode("stuff"));
+        myTree.print();
         
         sc.close();
     } 
@@ -28,11 +32,11 @@ public class Main {
     }
     
     // brute force way to test that print works
-    myTree.root = new Node("b");
+    /*myTree.root = new Node("b");
     myTree.root.left = new Node("a");
     myTree.root.right = new Node("d");
     myTree.root.right.left = new Node("c");
     myTree.root.right.right = new Node("e");
-    myTree.print();
+    myTree.print();*/
   }
 }
