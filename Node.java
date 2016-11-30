@@ -23,6 +23,6 @@ public class Node {
   
   // Methods
   public void print() {
-    System.out.print(key + " " );
+    System.out.println(key + " count: " + this.count);
   }
 }

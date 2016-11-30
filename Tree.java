@@ -5,10 +5,11 @@
  * Tree class
  * goals:
  * 1. binary search tree
- * 2. 3 kinds of traversal
- * 2a. switch statement & use 3 kinds of traversals
- * 3. find median (alphabetically)
- * 3a.make tree balanced
+ * 2. delete node
+ * 3. 3 kinds of traversal
+ * 3a. switch statement & use 3 kinds of traversals
+ * 4. find median (alphabetically)
+ * 4a.make tree balanced
  */
 public class Tree {
   // properties
@@ -23,39 +24,34 @@ public class Tree {
   // Adds node to the head of the list
   public void insert(String newKey) {
     Node newNode = new Node(newKey);
-    // if tree is empty, 
-    //add data to new root node
-    if (this.isEmpty()) {
+    // recursively insert in a subtree
+    this.insert(this.root, newNode); 
+  }
+  
+  public void insert(Node subTree, Node newNode) {
+    // basecase 1: empty tree
+    if (this.root == null) {
       this.root = newNode;
-    } else {
-      // compare nodes & insert in proper spot
-      // local Node variable to keep track of 
-      // where we are
-      // start at the root of the tree
-      Node current = this.root;
-      // greater goes right
-      while (current != null){
-        if (newKey.compareTo(current.key) >  0) {
-          // if right is null, add new node to right
-          if (current.right == null) {
-            current.right = newNode;
-            break;
-          }
-          current = current.right;
-          // less than goes left
-        } else if (newKey.compareTo(current.key) < 0) {
-          // if left is null, add new node to left
-          if (current.left == null) {
-            current.left = newNode;
-            break;
-          }
-          current = current.left;
-          // equal increments counter
-        } else {
-          current.count++;
-          break;
-        }
+    }
+    // basecase 2: if the key is in the tree already
+    else if (newNode.key.compareTo(subTree.key) == 0) {
+      subTree.count++;  // increment counter
+    }
+    // if newNode < subTree, go left
+    else if (newNode.key.compareTo(subTree.key)<0) {
+      if (subTree.left == null) {
+        subTree.left = newNode;
+        newNode.parent = subTree;
       }
+      else this.insert(subTree.left, newNode);
+    }
+    // if newNode > subTree, go right
+    else {
+      if (subTree.right == null) {
+        subTree.right = newNode;
+        newNode.parent = subTree;
+      }
+      else this.insert(subTree.right, newNode);
     }
   }
   
@@ -65,17 +61,34 @@ public class Tree {
   }
   
   public boolean deleteNode(String key) {
-    // TODO: rewrite
+    // basecase 1: empty tree
+    if (this.root == null) {
+      return(false);
+    }
+    // basecase 2: if the key the subTree
+    else if (newNode.key.compareTo(subTree.key) == 0) {
+      
+      
+    }
     
-    /*Node current = this.root;
-    while(current != null) {
-      if (current.getNext() != null && current.getNext().getData() == key) {
-        current.setNext(current.getNext().getNext());
-        current.getNext().setPrev(current);
-        return(true);
+    
+    
+    // if newNode < subTree, go left
+    else if (newNode.key.compareTo(subTree.key)<0) {
+      if (subTree.left == null) {
+        subTree.left = newNode;
+        newNode.parent = subTree;
       }
-      current = current.getNext();
-    }*/
+      else this.insert(subTree.left, newNode);
+    }
+    // if newNode > subTree, go right
+    else {
+      if (subTree.right == null) {
+        subTree.right = newNode;
+        newNode.parent = subTree;
+      }
+      else this.insert(subTree.right, newNode);
+    }
     return(false);
   }
   
@@ -85,21 +98,15 @@ public class Tree {
   }
   
   public void print() {
-    // TODO: replace this with different kinds of traversals
-    // local Node variable to keep track of 
-    //where we are
-    // start at the root of the tree
-    Node current = this.root;
-    // inorder print:
-    // print left first
-    if (current.left == null) {
-       // print middle
-      current.print()
-    }
-    if (current.right == null) {
-    }
-    // print right
+    this.printInOrder(this.root);
     System.out.println("");
   }
   
+  public void printInOrder(Node subTree) {
+    if (subTree != null){
+      this.printInOrder(subTree.left); 
+      subTree.print();
+      this.printInOrder(subTree.right);    
+    }
+  }
 }

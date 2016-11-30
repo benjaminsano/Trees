@@ -13,19 +13,26 @@ public class Main {
     File file = new File("test.txt");  
     int wordcount = 0;
     try {
-
         Scanner sc = new Scanner(file);
-
         while (sc.hasNext()) {
-          myTree.insert(sc.next());
-          
+          myTree.insert(sc.next()); 
           wordcount++;// count words in file
         }
+        System.out.println("words: " + wordcount);
+        myTree.print();
+        
         sc.close();
     } 
     catch (FileNotFoundException e) {
         e.printStackTrace();
     }
     
+    // brute force way to test that print works
+    myTree.root = new Node("b");
+    myTree.root.left = new Node("a");
+    myTree.root.right = new Node("d");
+    myTree.root.right.left = new Node("c");
+    myTree.root.right.right = new Node("e");
+    myTree.print();
   }
 }
