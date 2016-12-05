@@ -40,6 +40,7 @@ public class Tree {
     // if newNode < subTree, go left
     else if (newNode.key.compareTo(subTree.key)<0) {
       if (subTree.left == null) {
+        System.out.println("left " + newNode.key);
         subTree.left = newNode;
         newNode.parent = subTree;
       }
@@ -48,6 +49,7 @@ public class Tree {
     // if newNode > subTree, go right
     else {
       if (subTree.right == null) {
+        System.out.println("right " + newNode.key);
         subTree.right = newNode;
         newNode.parent = subTree;
       }
@@ -65,19 +67,42 @@ public class Tree {
   }
   
   public boolean deleteNode(Node subTree, String key) {
+    System.out.println("deleteNode: " + key);
+    System.out.print("subTree: " + subTree.key);
+    System.out.print(" key: " + key);
+    System.out.println(" compareTo: " + key.compareTo(subTree.key));
     // basecase 1: empty tree
     if (this.root == null) {
+      System.out.println("root == null");
       return(false);
     }
     // case 2: if the key the subTree
     else if (key.compareTo(subTree.key) == 0) {
+      // copy right subtree into left subtree
       this.insert(subTree.right, subTree.left);
-      subTree.right.parent = subTree.parent;
-      if (subTree == subTree.parent.left) 
+      subTree.right.print();
+      subTree.right.left.print();
+      if (subTree == this.root) {
+        this.root = subTree.left;
+        // to keep root from pointing to deleted node
+        this.root.parent = null;
+      }
+      else {
+        subTree.left.parent = subTree.parent;
+        subTree.parent.left = subTree.left;
+      }
+      /*subTree.right.parent = subTree.parent;
+      if (subTree.parent == null || subTree == subTree.parent.left) 
         subTree.parent.left = subTree.right;
       else
-        subTree.parent.right = subTree.right;
+        subTree.parent.right = subTree.right;*/
       return(true);
+    }
+    else if (key.compareTo(subTree.key) > 0) {
+      this.deleteNode(subTree.right, key);
+    }
+    else {
+      this.deleteNode(subTree.left, key);
     }
     return(false);
   }
