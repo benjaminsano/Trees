@@ -44,16 +44,26 @@ public class Tree {
         subTree.left = newNode;
         newNode.parent = subTree;
       }
-      else this.insert(subTree.left, newNode);
+      else 
+      {
+        System.out.println("left " + newNode.key);
+        this.insert(subTree.left, newNode);
+      }
     }
     // if newNode > subTree, go right
     else {
+      // if there's no right node, insert it here
       if (subTree.right == null) {
         System.out.println("right " + newNode.key);
         subTree.right = newNode;
         newNode.parent = subTree;
       }
-      else this.insert(subTree.right, newNode);
+      else {
+        System.out.println("right " + newNode.key);
+        // if there is a right node, 
+        //insert recursively into right subtree
+        this.insert(subTree.right, newNode);
+      }
     }
   }
   
@@ -79,9 +89,9 @@ public class Tree {
     // case 2: if the key the subTree
     else if (key.compareTo(subTree.key) == 0) {
       // copy right subtree into left subtree
-      this.insert(subTree.right, subTree.left);
+      this.insert(subTree.left, subTree.right);
+      subTree.left.print();
       subTree.right.print();
-      subTree.right.left.print();
       if (subTree == this.root) {
         this.root = subTree.left;
         // to keep root from pointing to deleted node
@@ -91,17 +101,14 @@ public class Tree {
         subTree.left.parent = subTree.parent;
         subTree.parent.left = subTree.left;
       }
-      /*subTree.right.parent = subTree.parent;
-      if (subTree.parent == null || subTree == subTree.parent.left) 
-        subTree.parent.left = subTree.right;
-      else
-        subTree.parent.right = subTree.right;*/
       return(true);
     }
     else if (key.compareTo(subTree.key) > 0) {
+      if (subTree.right == null) return(false);
       this.deleteNode(subTree.right, key);
     }
     else {
+      if (subTree.left == null) return(false);
       this.deleteNode(subTree.left, key);
     }
     return(false);

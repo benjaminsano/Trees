@@ -20,10 +20,10 @@ public class Main {
         }
         System.out.println("words: " + wordcount);
         myTree.print();
-        System.out.println(myTree.deleteNode("blah"));
+        System.out.println(myTree.deleteNode("h"));
         myTree.print();
-        System.out.println(myTree.deleteNode("stuff"));
-        myTree.print();
+        //System.out.println(myTree.deleteNode("stuff"));
+        //myTree.print();
         
         sc.close();
     } 
