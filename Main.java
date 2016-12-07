@@ -20,6 +20,8 @@ public class Main {
         }
         System.out.println("words: " + wordcount);
         myTree.print(4);
+        System.out.println(myTree.getSize(myTree.root));
+        myTree.balance(myTree.root);
         /*System.out.println(myTree.deleteNode("c"));
         myTree.print();
         System.out.println(myTree.deleteNode("a"));

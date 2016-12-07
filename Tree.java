@@ -6,8 +6,8 @@
  * goals:
  * 1. x binary search tree
  * 2. x delete node
- * 3. 3 kinds of traversal
- * 3a. switch statement & use 3 kinds of traversals
+ * 3. x 3 kinds of traversal
+ * 3a. x switch statement & use 3 kinds of traversals
  * 4. find median (alphabetically)
  * 4a.make tree balanced
  */
@@ -165,7 +165,7 @@ public class Tree {
       this.printInOrder(subTree.right);    
     }
   }
-
+  
   public void printPostOrder(Node subTree) {
     if (subTree != null){
       // print left subtree
@@ -175,5 +175,38 @@ public class Tree {
       // print root
       subTree.print();
     }
+  }
+  
+    public int getSize(Node subTree) {
+    int size = 0;
+    if (subTree != null){
+      // size of left subtree
+      size = this.getSize(subTree.left);
+      // add current node to size
+      size ++;
+      // size of right subtree
+      size = size + this.getSize(subTree.right);    
+    }
+    return(size);
+  }
+  
+    public Node findMiddle(int index) {
+      for (int i = 0; i <= index; i++) {
+        /// traverse until we get to ith node
+        // or something else?
+      }
+    }
+    
+    
+  public void balance(Node subTree) {
+    // find middle of subtree
+    int size = getSize(subTree);
+    // find middle index, accounting for truncation
+    int middle = (int)(size/2+0.5);
+    
+    // make middle root
+    // balance left
+    // balance right
+    
   }
 }
