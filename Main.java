@@ -19,12 +19,13 @@ public class Main {
           wordcount++;// count words in file
         }
         System.out.println("words: " + wordcount);
+        myTree.print(4);
+        /*System.out.println(myTree.deleteNode("c"));
         myTree.print();
-        System.out.println(myTree.deleteNode("h"));
+        System.out.println(myTree.deleteNode("a"));
         myTree.print();
-        //System.out.println(myTree.deleteNode("stuff"));
-        //myTree.print();
-        
+        System.out.println(myTree.deleteNode("l"));
+        myTree.print();*/
         sc.close();
     } 
     catch (FileNotFoundException e) {

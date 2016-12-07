@@ -4,8 +4,8 @@
  * 
  * Tree class
  * goals:
- * 1. binary search tree
- * 2. delete node
+ * 1. x binary search tree
+ * 2. x delete node
  * 3. 3 kinds of traversal
  * 3a. switch statement & use 3 kinds of traversals
  * 4. find median (alphabetically)
@@ -29,8 +29,11 @@ public class Tree {
   }
   
   public void insert(Node subTree, Node newNode) {
+    // basecase 0: newNode = null; do nothing
+    if (newNode == null) {
+    }
     // basecase 1: empty tree
-    if (this.root == null) {
+    else if (this.root == null) {
       this.root = newNode;
     }
     // basecase 2: if the key is in the tree already
@@ -90,16 +93,19 @@ public class Tree {
     else if (key.compareTo(subTree.key) == 0) {
       // copy right subtree into left subtree
       this.insert(subTree.left, subTree.right);
-      subTree.left.print();
-      subTree.right.print();
       if (subTree == this.root) {
         this.root = subTree.left;
         // to keep root from pointing to deleted node
         this.root.parent = null;
       }
-      else {
+      else if (subTree.left != null) {
         subTree.left.parent = subTree.parent;
         subTree.parent.left = subTree.left;
+      } // node is at bottom of tree (no children)
+      else if (subTree.parent.left != null && subTree.parent.left.key.compareTo(key) == 0){
+        subTree.parent.left = null;
+      } else if (subTree.parent.right != null && subTree.parent.right.key.compareTo(key) == 0) {
+        subTree.parent.right = null;
       }
       return(true);
     }
@@ -119,16 +125,55 @@ public class Tree {
     this.root = null;
   }
   
-  public void print() {
-    this.printInOrder(this.root);
+  public void print(int traverseType) {
+    switch (traverseType) {
+      case 1:
+        this.printInOrder(this.root);
+        break;
+      case 2:
+        this.printPreOrder(this.root);
+        break;
+      case 3:
+        this.printPostOrder(this.root);
+        break;
+      default :
+        this.printInOrder(this.root);
+        break;
+       
+    }
     System.out.println("");
+  }
+  
+  public void printPreOrder(Node subTree) {
+    if (subTree != null){
+      // print root
+      subTree.print();
+      // print left subtree
+      this.printPreOrder(subTree.left);
+      // print right subtree
+      this.printPreOrder(subTree.right);    
+    }
   }
   
   public void printInOrder(Node subTree) {
     if (subTree != null){
-      this.printInOrder(subTree.left); 
+      // print left subtree
+      this.printInOrder(subTree.left);
+      // print root
       subTree.print();
+      // print right subtree
       this.printInOrder(subTree.right);    
+    }
+  }
+
+  public void printPostOrder(Node subTree) {
+    if (subTree != null){
+      // print left subtree
+      this.printPostOrder(subTree.left);
+      // print right subtree
+      this.printPostOrder(subTree.right); 
+      // print root
+      subTree.print();
     }
   }
 }
